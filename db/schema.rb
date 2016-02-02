@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202203846) do
+ActiveRecord::Schema.define(version: 20160202212917) do
 
   create_table "movies", force: true do |t|
     t.string   "title"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160202203846) do
     t.integer  "runtime_in_minutes"
     t.text     "description"
     t.string   "poster_image_url"
-    t.datetime "release_data"
+    t.datetime "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
