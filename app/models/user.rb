@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :reviews
   mount_uploader :avatar , AvatarUploader 
-
+  
  has_secure_password 
 
  validates :email, presence: true
