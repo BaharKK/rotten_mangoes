@@ -16,7 +16,7 @@ RottenMangoes::Application.routes.draw do
   root to: 'movies#index'
   
   namespace :admin do 
-    resources :users  
+    resources :users
   end
   
 
