@@ -1,12 +1,32 @@
-<h1>Rotten Mangoes</h1>
-  <%= link_to "Submit a movie!", new_movie_path %>
-  <hr>
-  <% @movies.each do |movie| %>
-    <%= image_tag movie.image_url(:thumb) if movie.image? %>
-   <!--  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %> -->
-    <h2><%= link_to movie.title, movie_path(movie) %> |  <%= movie.review_average %>/10 </h2>
-    <h3><%= formatted_date(movie.release_date) %></h3>
-    <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-    <p><%= movie.description %></p>
-    <hr>
-  <% end %>
+<div class="container">
+  <div class="span9">
+    <h1>Rotten Mangoes</h1>
+    <%= link_to "Submit a movie!", new_movie_path %>
+  </div>
+  <div class="row">
+    <div class="col-md-6">  
+      <%= form_tag movies_path, method: :get, class: "search_form", id: "movie_search" do %>
+        <%= label_tag(:querylabel, "Search By Title Or Director") %> 
+        <%= text_field_tag :query %>
+        <%= submit_tag "Search" %> 
+      <% end %>           
+    </div>
+    <div class="col-md-6">
+      <%= form_tag movies_path, method: :get do %>
+        <%= select_tag :value, options_for_select([['Under 90 minutes'],['Between 90 and 120 minutes'],['Over 120 minutes']]) %>
+        <%= submit_tag "Search" %> 
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <% @movies.each do |movie| %>
+      <%= image_tag movie.image_url(:thumb) if movie.image? %>
+     <!--  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %> -->
+      <h2>Movie Title:<%= link_to movie.title, movie_path(movie) %> | Rating:  <%= movie.review_average %>/10 </h2>
+      <h3>Release Date: <%= formatted_date(movie.release_date) %></h3>
+      <h4>Dir. <%= movie.director %> | Duration: <%= movie.runtime_in_minutes %> minutes</h4>
+      <p><%= movie.description %></p>
+      <hr>
+    <% end %>
+    </div>
+</div>

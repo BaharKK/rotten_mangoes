@@ -7,8 +7,12 @@ RottenMangoes::Application.routes.draw do
   # get "users/create"
 
   resources :movies do 
+    collection do 
+      get :duration_search 
+    end
     resources :reviews, only: [:new, :create]
   end
+
 
   
   resources :users, only: [:new, :create]
