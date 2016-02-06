@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
         @movies = Movie.all
       end
     end
-
+    
     if params[:value] == "Under 90 minutes"
       # @movies = Movie.where("runtime_in_minutes <= ?",90)
       @movies = Movie.less_than_90 
