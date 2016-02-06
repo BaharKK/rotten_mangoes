@@ -22,6 +22,12 @@ class Movie < ActiveRecord::Base
 
     validate :release_date_is_in_the_past
 
+    scope :find_by_name, -> (query) { where("title LIKE ? OR director LIKE ?", query,query) }
+
+    scope :less_than_90, -> { where("runtime_in_minutes <= ?",90)}
+    scope :between_90_to_120, -> {where("runtime_in_minutes >= ? AND runtime_in_minutes <= ?",90, 120)}
+    scope :over_120, -> {where("runtime_in_minutes > ?",120)}
+
 
   def review_average
     reviews.sum(:rating_out_of_ten)/reviews.size if reviews.size > 0
